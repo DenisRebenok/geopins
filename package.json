@@ -1,0 +1,23 @@
+{
+  "name": "geopins",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon --ignore client/ server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.3.1",
+    "dotenv": "^6.2.0",
+    "google-auth-library": "^3.0.1",
+    "graphql": "^14.1.1",
+    "mongoose": "^5.4.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
