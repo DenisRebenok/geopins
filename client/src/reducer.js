@@ -56,10 +56,19 @@ export default function reducer(state, { type, payload }) {
     case 'DELETE_PIN':
       const deletedPin = payload;
       const filteredPins = state.pins.filter(pin => pin._id !== deletedPin._id);
+      if (state.currentPin) {
+        const isCurrentPin = deletedPin._id === state.currentPin._id;
+        if (isCurrentPin) {
+          return {
+            ...state,
+            pins: filteredPins,
+            currentPin: null
+          };
+        }
+      }
       return {
         ...state,
-        pins: filteredPins,
-        currentPin: null
+        pins: filteredPins
       };
     case 'CREATE_COMMENT':
       const updatedCurrentPin = payload;
