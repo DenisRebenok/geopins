@@ -1,6 +1,7 @@
 const express = require('express')
 const { ApolloServer } = require('apollo-server-express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 require('dotenv').config()
 
 const typeDefs = require('./typeDefs')
@@ -35,12 +36,16 @@ const server = new ApolloServer({
 
 const app = express()
 
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || '*',
+  credentials: true,
+}
+app.use(cors(corsOptions))
+
 server.applyMiddleware({
   app,
-  cors: {
-    origin: '*',
-    credentials: true,
-  },
+  path: '/',
+  cors: false, // disables the apollo-server-express cors to allow the cors middleware use
 })
 
 app.listen({ port: process.env.PORT || 4000 }, () =>
