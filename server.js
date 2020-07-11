@@ -16,7 +16,7 @@ mongoose
 
 const server = new ApolloServer({
   cors: {
-    origin: 'https://geopins.den4ik777.now.sh',
+    origin: '*',
     credentials: true,
   },
   typeDefs,
