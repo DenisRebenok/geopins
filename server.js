@@ -1,7 +1,7 @@
 const express = require('express')
 const { ApolloServer } = require('apollo-server-express')
 const mongoose = require('mongoose')
-const cors = require('cors')
+// const cors = require('cors')
 require('dotenv').config()
 
 const typeDefs = require('./typeDefs')
@@ -40,13 +40,7 @@ const corsOptions = {
   origin: process.env.FRONTEND_URL || '*',
   credentials: true,
 }
-app.use(cors(corsOptions))
-
-server.applyMiddleware({
-  app,
-  path: '/',
-  cors: false, // disables the apollo-server-express cors to allow the cors middleware use
-})
+server.applyMiddleware({ app, cors: corsOptions })
 
 app.listen({ port: process.env.PORT || 4000 }, () =>
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
